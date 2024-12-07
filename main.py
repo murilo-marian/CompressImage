@@ -45,6 +45,7 @@ def readCompressedImage(filepath):
             else:
                 for i in range(mult):
                     decompressedSeparated.append(num)
+            mult = 1
         pixels = [[0 for _ in range(3)] for _ in range(width * height)]
         counter = 0
         rgbCounter = 0
@@ -78,7 +79,8 @@ def compress(pixels):
                     instance += 1
                     continue
                 
-                compressed.append(-instance)
+                if instance > 1:
+                    compressed.append(-instance)
                 compressed.append(prevValue)
                 prevValue = value
                 instance = 1
